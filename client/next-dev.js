@@ -1,4 +1,4 @@
-import initNext, * as next from './'
+import initNext from './'
 import initOnDemandEntries from './on-demand-entries-client'
 import initWebpackHMR from './webpack-hot-middleware-client'
 
@@ -17,7 +17,6 @@ const {
 const prefix = assetPrefix || ''
 const webpackHMR = initWebpackHMR({assetPrefix: prefix})
 
-window.next = next
 initNext({ webpackHMR })
   .then((emitter) => {
     initOnDemandEntries({assetPrefix: prefix})

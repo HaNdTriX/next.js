@@ -1,6 +1,4 @@
-import initNext, * as next from './'
-
-window.next = next
+import initNext from './'
 
 initNext()
   .catch((err) => {
