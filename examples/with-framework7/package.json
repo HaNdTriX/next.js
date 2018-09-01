@@ -1,0 +1,19 @@
+{
+  "name": "data-fetch",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "framework7": "3.1.1",
+    "framework7-react": "3.1.1",
+    "isomorphic-unfetch": "^2.0.0",
+    "next": "latest",
+    "next-plugin-transpile-modules": "0.1.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "license": "ISC"
+}
