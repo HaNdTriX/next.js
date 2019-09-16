@@ -11,6 +11,7 @@ export const ALL_POSTS_QUERY = gql`
       title
       votes
       url
+      renderedOn @client
       createdAt
     }
     _allPostsMeta {
@@ -69,6 +70,7 @@ export default function PostList () {
               <span>{index + 1}. </span>
               <a href={post.url}>{post.title}</a>
               <PostUpvoter id={post.id} votes={post.votes} />
+              (RenderedOn: {post.renderedOn})
             </div>
           </li>
         ))}

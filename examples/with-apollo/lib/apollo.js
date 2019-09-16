@@ -5,6 +5,7 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
+import { resolvers, typeDefs } from './clientSchema'
 
 let apolloClient = null
 
@@ -132,6 +133,8 @@ function createApolloClient (initialState = {}) {
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch
     }),
+    resolvers,
+    typeDefs,
     cache: new InMemoryCache().restore(initialState)
   })
 }
