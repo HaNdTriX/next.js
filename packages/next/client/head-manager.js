@@ -95,8 +95,23 @@ function reactElementToDOM ({ type, props }) {
     if (!props.hasOwnProperty(p)) continue
     if (p === 'children' || p === 'dangerouslySetInnerHTML') continue
 
-    const attr = DOMAttributeNames[p] || p.toLowerCase()
-    el.setAttribute(attr, props[p])
+    const attrName = DOMAttributeNames[p] || p.toLowerCase()
+    let attrValue = props[p]
+
+    // Cast empty strings to false
+    if (attrValue === '') {
+      attrValue = false
+    }
+
+    if (typeof attrValue === 'boolean') {
+      // Set true as empty string
+      if (attrValue) {
+        el.setAttribute(attrName, '')
+      }
+      // else ignore attrValue === false
+    } else {
+      el.setAttribute(attrName, `${attrValue}`)
+    }
   }
 
   const { children, dangerouslySetInnerHTML } = props
