@@ -8,7 +8,7 @@ export default () => {
   }, [])
   return (
     <button
-      onClick={() => setCount(count => count + 2)}
+      onClick={() => setCount(count => count + 1)}
       style={{
         width: '100%',
         height: 200,
