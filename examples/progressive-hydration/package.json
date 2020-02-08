@@ -7,9 +7,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "next": "9.2.2-canary.14",
+    "react": "0.0.0-experimental-241c4467e",
+    "react-dom": "0.0.0-experimental-241c4467e"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "9.2.1"
