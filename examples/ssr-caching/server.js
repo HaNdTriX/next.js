@@ -9,9 +9,8 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const ssrCache = cacheableResponse({
-  ttl: 1000 * 60 * 60, // 1hour
-  get: async ({ req, res, pagePath, queryParams }) => {
-    const data = await app.renderToHTML(req, res, pagePath, queryParams)
+  get: async ({ req, res }) => {
+    const data = await app.render(req, res, req.path, req.params)
 
     // Add here custom logic for when you do not want to cache the page, for
     // example when the page returns a 404 status code:
@@ -20,22 +19,21 @@ const ssrCache = cacheableResponse({
       return
     }
 
-    return { data }
+    return {
+      data,
+      ttl: 1000 * 60 * 60, // 1hour
+    }
   },
-  send: ({ data, res }) => res.send(data),
+  send: ({ data, res }) => {
+    return res.send(data)
+  },
 })
 
 app.prepare().then(() => {
   const server = express()
 
-  server.get('/', (req, res) => ssrCache({ req, res, pagePath: '/' }))
-
-  server.get('/blog/:id', (req, res) => {
-    const queryParams = { id: req.params.id }
-    const pagePath = '/blog'
-    return ssrCache({ req, res, pagePath, queryParams })
-  })
-
+  server.get('/', (req, res) => ssrCache({ req, res }))
+  server.get('/blog/:id', (req, res) => ssrCache({ req, res }))
   server.get('*', (req, res) => handle(req, res))
 
   server.listen(port, err => {
