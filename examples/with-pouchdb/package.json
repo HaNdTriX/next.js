@@ -1,0 +1,17 @@
+{
+  "name": "with-pouchdb",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "10.0.3",
+    "pouchdb": "7.2.2",
+    "react": "0.0.0-experimental-4ead6b530",
+    "react-dom": "0.0.0-experimental-4ead6b530",
+    "react-pouchdb": "2.1.0"
+  }
+}
